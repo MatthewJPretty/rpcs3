@@ -1314,7 +1314,7 @@ void PPUTranslator::VRLW(ppu_opcode_t op)
 
 void PPUTranslator::VRSQRTEFP(ppu_opcode_t op)
 {
-	SetVr(op.vd, Call(GetType<f32[4]>(), m_pure_attr, "__vrsqrtefp", GetVr(op.vb, VrType::vf)));
+	{ SetVr(op.vd, Call(GetType<f32[4]>(), "llvm.x86.sse.rsqrt.ps", GetVr(op.vb, VrType::vf))); }
 }
 
 void PPUTranslator::VSEL(ppu_opcode_t op)
